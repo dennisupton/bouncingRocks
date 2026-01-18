@@ -36,8 +36,6 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction/100 * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	
 	move_and_slide()
 func restart():
 	if get_tree():

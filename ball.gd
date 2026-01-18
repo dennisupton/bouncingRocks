@@ -21,12 +21,14 @@ func _physics_process(delta: float) -> void:
 			child.scale = 0.8*scale
 			child.velocity.x = -200
 			child.position = position-Vector2(20,0)
+			child.position.y = 102
 			$"..".add_child(child)
 			child = $"..".ball.instantiate()
 			child.health = startHealth/2
 			child.startHealth = startHealth/2
 			child.scale = 0.8*scale
 			child.position = position+Vector2(20,0)
+			child.position.y = 102
 			$"..".add_child(child)
 		queue_free()
 	# Add the gravity.
