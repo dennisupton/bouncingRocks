@@ -30,9 +30,10 @@ func _physics_process(delta: float) -> void:
 			direction = 1
 		else:
 			direction = -1
+		direction = mousePos.x - position.x
 	
 	if direction:
-		velocity.x = direction * SPEED
+		velocity.x = direction/100 * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 

@@ -39,7 +39,7 @@ offset_top = 648.00006
 offset_right = 68.0
 offset_bottom = 1799.6963
 rotation = -1.5707964
-color = Color(0.23503968, 0.08818891, 2.8878452e-07, 1)
+color = Color(0.31764707, 0.16862746, 0, 1)
 
 [node name="ball" parent="." instance=ExtResource("3_lquwl")]
 position = Vector2(458, 102)
@@ -63,7 +63,7 @@ offset_top = 648.00006
 offset_right = 68.0
 offset_bottom = 1799.6963
 rotation = -1.5591002
-color = Color(0.23503968, 0.08818891, 2.8878452e-07, 1)
+color = Color(0.31764707, 0.16862746, 0, 1)
 
 [node name="Wall" type="StaticBody2D" parent="."]
 physics_material_override = SubResource("PhysicsMaterial_ig7tw")
@@ -76,7 +76,7 @@ shape = SubResource("RectangleShape2D_h2yge")
 offset_left = -9.0
 offset_right = 68.0
 offset_bottom = 644.0
-color = Color(0.23503968, 0.08818891, 2.8878452e-07, 1)
+color = Color(0.31764707, 0.16862746, 0, 1)
 
 [node name="Wall2" type="StaticBody2D" parent="."]
 position = Vector2(1082, -2)
@@ -90,7 +90,7 @@ shape = SubResource("RectangleShape2D_h2yge")
 offset_left = -9.0
 offset_right = 68.0
 offset_bottom = 644.0
-color = Color(0.23503968, 0.08818891, 2.8878452e-07, 1)
+color = Color(0.31764707, 0.16862746, 0, 1)
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
 position = Vector2(311, 554)
