@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="bounce"
+config/name="Baller"
 run/main_scene="uid://cjt0xbpo7iac5"
 config/features=PackedStringArray("4.5", "Forward Plus")
 boot_splash/bg_color=Color(0, 0, 0, 1)

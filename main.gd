@@ -1,6 +1,7 @@
 extends Node2D
 
 var ball
+var explodeFX
 var ante = 1
 var dir = 1
 var highscore = 0
@@ -10,6 +11,7 @@ func _ready() -> void:
 	if highscore > 0:
 		$highscore.text = "Highscore : "+ str(highscore)
 	ball = preload("res://ball.tscn")
+	explodeFX = preload("res://explode.tscn")
 	newBall()
 	
 var score = 0
@@ -20,7 +22,11 @@ func _process(_delta: float) -> void:
 		ante *= 2
 		newBall()
 
-
+func addExplode(pos,color):
+	var child = explodeFX.instantiate()
+	child.position = pos
+	child.color = color
+	add_child(child)
 
 func addToScore():
 	score += 1

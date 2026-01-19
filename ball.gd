@@ -8,6 +8,7 @@ var health = 20
 var startHealth = 20
 var startTime
 var wait
+var kill = false
 func _ready() -> void:
 	if wait == null:
 		wait = false
@@ -23,7 +24,7 @@ func _ready() -> void:
 	c.a = 0.5
 	$Circle/inner.modulate= c#$Circle/inner.modulate.darkened(0.3)
 func _physics_process(delta: float) -> void:
-	if Time.get_ticks_msec() - startTime > 100 or not wait:
+	if (Time.get_ticks_msec() - startTime > 100 or not wait) and not kill:
 		$Circle/inner.scale = Vector2(float(health)/float(startHealth),float(health)/float(startHealth))
 		$Health.text = str(health)
 		if health <1:
@@ -44,7 +45,12 @@ func _physics_process(delta: float) -> void:
 				child.position = position+Vector2(20,0)
 				child.position.y = 102
 				$"..".add_child(child)
-			queue_free()
+			$Circle.hide()
+			$Health.hide()
+			kill = true
+			var c = Color.from_hsv(fmod(startHealth * 0.2, 1.0), 1.0, 1.0)
+			c.a = 0.5
+			$"..".addExplode(position,c.darkened(0.3))
 		# Add the gravity.
 		if not is_on_floor():
 			velocity += get_gravity() * delta *2
@@ -63,5 +69,7 @@ func _physics_process(delta: float) -> void:
 		else:
 			lastV.x = velocity.x
 		move_and_slide()
+	elif kill:
+		queue_free()
 	else:
 		health = startHealth
