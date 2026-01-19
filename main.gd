@@ -59,10 +59,8 @@ func restart():
 	newBall()
 	$Player.restarting = false
 	var sw_result = await SilentWolf.Scores.get_scores_by_player(username).sw_get_player_scores_complete
-	print("Got player scores: " + str(sw_result.scores))
-	print("Does player have scores? " + str(sw_result.scores.size() > 0))
 	if (not username == "") and lastScore > 35 and (sw_result.scores.size() == 0 or lastScore > sw_result.scores[0].score):
-		print("trying to save")
+		print("Uploading to Leaderboard")
 		$CanvasLayer/bar/saving.show()
 		await SilentWolf.Scores.save_score(username, lastScore)
 		$CanvasLayer/bar/saving.hide()
