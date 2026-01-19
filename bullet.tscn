@@ -1,9 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://ck3gdy54volgb"]
+[gd_scene load_steps=4 format=3 uid="uid://ck3gdy54volgb"]
 
 [ext_resource type="Script" uid="uid://b2g1bvdpxjsmd" path="res://bullet.gd" id="1_v7oki"]
+[ext_resource type="Texture2D" uid="uid://cn6r6euxdxu5x" path="res://circle.svg" id="2_v8qja"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8qja"]
-size = Vector2(20, 47)
+[sub_resource type="CircleShape2D" id="CircleShape2D_t4vbm"]
+radius = 18.248287
 
 [node name="bullet" type="StaticBody2D"]
 collision_layer = 0
@@ -11,15 +12,12 @@ collision_mask = 0
 script = ExtResource("1_v7oki")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_v8qja")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -10.0
-offset_top = -23.0
-offset_right = 10.0
-offset_bottom = 24.0
-color = Color(1, 0, 0.08235294, 1)
+shape = SubResource("CircleShape2D_t4vbm")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, -87)
+target_position = Vector2(0, -60)
 collision_mask = 2
+
+[node name="Circle" type="Sprite2D" parent="."]
+scale = Vector2(0.05249999, 0.052500002)
+texture = ExtResource("2_v8qja")

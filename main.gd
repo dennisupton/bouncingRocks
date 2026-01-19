@@ -43,6 +43,7 @@ func newBall():
 	child.startHealth = ante
 	child.velocity.x = -200 * dir
 	child.position = Vector2(574,94)
+	child.scale = Vector2(log(ante+2)/log(10),log(ante+2)/log(10))
 	child.wait = true
 	add_child(child)
 
