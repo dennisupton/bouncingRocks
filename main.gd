@@ -142,7 +142,7 @@ func _on_set_name_pressed() -> void:
 func save_name_js(s):
 	if OS.has_feature("web"):
 		JavaScriptBridge.eval(
-			"localStorage.setItem('name', '%d');" % s
+			"localStorage.setItem('name', '%s');" % s
 		)
 
 
