@@ -14,7 +14,10 @@ func _ready() -> void:
 	if highscore > 0:
 		$highscore.text = "Highscore : "+ str(highscore)
 	username = load_name_js()
-	$CanvasLayer/Pause/Container/name.text = username
+	if username:
+		$CanvasLayer/Pause/Container/name.text = username
+	else:
+		username = ""
 	ball = preload("res://ball.tscn")
 	explodeFX = preload("res://explode.tscn")
 	newBall()
@@ -29,7 +32,7 @@ func _ready() -> void:
 	})
 	$CanvasLayer/Leaderboard.loadLeaderboard()
 	
-	SilentWolf.Scores.wipe_leaderboard()
+	#SilentWolf.Scores.wipe_leaderboard()
 var score = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
