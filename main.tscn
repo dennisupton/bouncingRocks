@@ -1,7 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://cjt0xbpo7iac5"]
+[gd_scene load_steps=16 format=3 uid="uid://cjt0xbpo7iac5"]
 
 [ext_resource type="Script" uid="uid://cyh211hlu0nlj" path="res://main.gd" id="1_1bvp3"]
+[ext_resource type="Script" uid="uid://dnwq0ko6oqchr" path="res://leaderboard.gd" id="3_1bvp3"]
 [ext_resource type="Script" uid="uid://w61nm3ytyr5o" path="res://player.gd" id="3_h2yge"]
+[ext_resource type="Theme" uid="uid://b1vyvai5vn4ii" path="res://theme.tres" id="3_lquwl"]
+[ext_resource type="Texture2D" uid="uid://bsnkgt6vuuiqy" path="res://pause.svg" id="5_7mycd"]
+[ext_resource type="Script" uid="uid://c81w643hqdeht" path="res://pause.gd" id="5_272bh"]
+[ext_resource type="Texture2D" uid="uid://bxdiijfg1faoq" path="res://leaderboard.svg" id="6_272bh"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
 font_size = 66
@@ -24,6 +29,13 @@ size = Vector2(1163, 63)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h2yge"]
 size = Vector2(77, 1598)
 
+[sub_resource type="LabelSettings" id="LabelSettings_x1gaq"]
+font_size = 36
+
+[sub_resource type="LabelSettings" id="LabelSettings_272bh"]
+shadow_size = 51
+shadow_color = Color(0, 0, 0, 0.043137256)
+
 [node name="main" type="Node2D"]
 script = ExtResource("1_1bvp3")
 
@@ -32,6 +44,7 @@ offset_left = 23.0
 offset_top = -479.0
 offset_right = 359.0
 offset_bottom = -346.0
+text = "999"
 label_settings = SubResource("LabelSettings_h2yge")
 
 [node name="score" type="Label" parent="."]
@@ -128,3 +141,122 @@ offset_left = -9.0
 offset_right = 68.0
 offset_bottom = 644.0
 color = Color(0.18039216, 0.18039216, 0.18039216, 1)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Leaderboard" type="Panel" parent="CanvasLayer"]
+visible = false
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 309.0
+offset_top = 87.0
+offset_right = -309.0
+offset_bottom = -87.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_lquwl")
+script = ExtResource("3_1bvp3")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Leaderboard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 74.0
+offset_top = 77.0
+offset_right = -75.0
+offset_bottom = -268.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="top" type="HSplitContainer" parent="CanvasLayer/Leaderboard/VBoxContainer"]
+layout_mode = 2
+
+[node name="Name" type="Label" parent="CanvasLayer/Leaderboard/VBoxContainer/top"]
+layout_mode = 2
+text = "Name"
+label_settings = SubResource("LabelSettings_x1gaq")
+
+[node name="Score" type="Label" parent="CanvasLayer/Leaderboard/VBoxContainer/top"]
+layout_mode = 2
+text = "Score"
+label_settings = SubResource("LabelSettings_x1gaq")
+horizontal_alignment = 2
+
+[node name="Pause" type="Panel" parent="CanvasLayer"]
+visible = false
+anchors_preset = -1
+anchor_top = -0.44500002
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 309.0
+offset_top = 928.64
+offset_right = -309.0
+offset_bottom = -422.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = ExtResource("3_lquwl")
+script = ExtResource("5_272bh")
+
+[node name="Container" type="VBoxContainer" parent="CanvasLayer/Pause"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 74.0
+offset_top = 77.0
+offset_right = -75.0
+offset_bottom = -120.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Back" type="Button" parent="CanvasLayer/Pause/Container"]
+layout_mode = 2
+text = "Back"
+
+[node name="name" type="LineEdit" parent="CanvasLayer/Pause/Container"]
+layout_mode = 2
+placeholder_text = "Enter Name"
+alignment = 1
+
+[node name="setName" type="Button" parent="CanvasLayer/Pause/Container"]
+layout_mode = 2
+focus_mode = 0
+text = "Set Name"
+
+[node name="bar" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -157.0
+offset_top = 64.0
+offset_right = -104.0
+offset_bottom = 98.0
+grow_horizontal = 2
+theme = ExtResource("3_lquwl")
+alignment = 2
+
+[node name="remember" type="Label" parent="CanvasLayer/bar"]
+layout_mode = 2
+text = "Remember to set username to save score ->"
+label_settings = SubResource("LabelSettings_272bh")
+
+[node name="pause" type="Button" parent="CanvasLayer/bar"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("3_lquwl")
+icon = ExtResource("5_7mycd")
+icon_alignment = 1
+
+[node name="showLeaderboard" type="Button" parent="CanvasLayer/bar"]
+layout_mode = 2
+focus_mode = 0
+theme = ExtResource("3_lquwl")
+icon = ExtResource("6_272bh")
+
+[connection signal="pressed" from="CanvasLayer/Pause/Container/Back" to="CanvasLayer/Pause" method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause/Container/setName" to="." method="_on_set_name_pressed"]
+[connection signal="pressed" from="CanvasLayer/bar/pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="CanvasLayer/bar/showLeaderboard" to="." method="_on_show_leaderboard_pressed"]

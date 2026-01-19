@@ -1,0 +1,33 @@
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://b1vyvai5vn4ii"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h2yge"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.29954728, 0.2995475, 0.29954743, 1)
+corner_radius_top_left = 10
+corner_radius_top_right = 10
+corner_radius_bottom_right = 10
+corner_radius_bottom_left = 10
+shadow_size = 10
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0xm2m"]
+bg_color = Color(0.21950099, 0.21950105, 0.21950087, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+shadow_color = Color(0.12225228, 0.12225222, 0.12225223, 0.61960787)
+shadow_size = 130
+
+[resource]
+Button/styles/focus = SubResource("StyleBoxFlat_h2yge")
+Button/styles/hover = SubResource("StyleBoxFlat_h2yge")
+Button/styles/normal = SubResource("StyleBoxFlat_h2yge")
+Button/styles/pressed = SubResource("StyleBoxFlat_h2yge")
+HBoxContainer/constants/separation = 30
+LineEdit/styles/focus = SubResource("StyleBoxFlat_h2yge")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_h2yge")
+Panel/styles/panel = SubResource("StyleBoxFlat_0xm2m")
+VBoxContainer/constants/separation = 26
