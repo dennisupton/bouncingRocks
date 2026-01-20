@@ -64,7 +64,7 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Player" type="CharacterBody2D" parent="." groups=["player"]]
-position = Vector2(311, 554)
+position = Vector2(972, 551)
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("3_h2yge")
@@ -188,6 +188,7 @@ label_settings = SubResource("LabelSettings_x1gaq")
 horizontal_alignment = 2
 
 [node name="Pause" type="Panel" parent="CanvasLayer"]
+visible = false
 z_index = 2
 anchors_preset = -1
 anchor_top = -0.44500002
@@ -222,12 +223,21 @@ layout_mode = 2
 theme = ExtResource("3_lquwl")
 text = "Back"
 
-[node name="name" type="LineEdit" parent="CanvasLayer/Pause/Container"]
+[node name="username" type="HBoxContainer" parent="CanvasLayer/Pause/Container"]
 layout_mode = 2
+theme = ExtResource("3_lquwl")
+alignment = 1
+
+[node name="name" type="LineEdit" parent="CanvasLayer/Pause/Container/username"]
+layout_mode = 2
+size_flags_horizontal = 3
 theme = ExtResource("3_lquwl")
 placeholder_text = "Enter Name"
 max_length = 10
-right_icon = ExtResource("6_5vw27")
+
+[node name="enterName" type="Button" parent="CanvasLayer/Pause/Container/username"]
+layout_mode = 2
+icon = ExtResource("6_5vw27")
 
 [node name="bar" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 10
@@ -270,6 +280,7 @@ text = "Saving"
 label_settings = SubResource("LabelSettings_272bh")
 
 [connection signal="pressed" from="CanvasLayer/Pause/Container/Back" to="CanvasLayer/Pause" method="_on_back_pressed"]
-[connection signal="text_submitted" from="CanvasLayer/Pause/Container/name" to="." method="_on_name_text_submitted"]
+[connection signal="text_submitted" from="CanvasLayer/Pause/Container/username/name" to="." method="_on_name_text_submitted"]
+[connection signal="pressed" from="CanvasLayer/Pause/Container/username/enterName" to="." method="_on_enter_name_pressed"]
 [connection signal="pressed" from="CanvasLayer/bar/pause" to="." method="_on_pause_pressed"]
 [connection signal="pressed" from="CanvasLayer/bar/showLeaderboard" to="." method="_on_show_leaderboard_pressed"]

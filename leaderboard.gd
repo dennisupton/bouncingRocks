@@ -25,4 +25,3 @@ func loadLeaderboard():
 		child.get_child(0).text = str(i.player_name)
 		child.get_child(1).text = str(int(i.score))
 		$VBoxContainer.add_child(child)
-	$VBoxContainer.get_child(1).queue_free()

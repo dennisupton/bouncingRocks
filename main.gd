@@ -8,6 +8,7 @@ var highscore = 0
 var leaderboard
 var username
 var newHighscore = false
+var r = RandomNumberGenerator.new()
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	highscore = load_highscore_js()
@@ -90,11 +91,12 @@ func empty():
 			return false
 	return true
 
+
 func newBall():
 	var child = ball.instantiate()
 	child.startHealth = ante
 	child.velocity.x = -200 * dir
-	child.position = Vector2(574,94)
+	child.position = Vector2(r.randi_range(200,970),94)
 	#child.scale = Vector2(log(ante+2)/log(10),log(ante+2)/log(10))
 	child.wait = true
 	add_child(child)
@@ -129,7 +131,7 @@ func _on_show_leaderboard_pressed():
 
 func _on_pause_pressed() -> void:
 	if not $CanvasLayer/Leaderboard.visible:
-		$CanvasLayer/Pause/Container/name.text = username
+		$CanvasLayer/Pause/Container/username/name.text = username
 		$CanvasLayer/Pause.visible = not $CanvasLayer/Pause.visible
 		if $CanvasLayer/Pause.visible:
 			Engine.time_scale = 0
@@ -143,8 +145,8 @@ func save_name_js(s):
 	if OS.has_feature("web"):
 		JavaScriptBridge.eval(
 			"localStorage.setItem('name', '%s');" % s
-		)
-
+		
+)
 
 func load_name_js():
 	if OS.has_feature("web"):
@@ -158,7 +160,7 @@ func load_name_js():
 	
 
 
-func _on_name_text_submitted(new_text: String) -> void:
+func _on_enter_name_pressed() -> void:
 	print("new username")
-	username = new_text
-	save_name_js(new_text)
+	username = $CanvasLayer/Pause/Container/username/name.text
+	save_name_js(username)

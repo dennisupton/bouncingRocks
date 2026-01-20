@@ -26,8 +26,10 @@ gdscript/warnings/integer_division=0
 
 [display]
 
-window/size/viewport_height=1152
+window/size/viewport_width=1080
+window/size/viewport_height=1295
 window/stretch/mode="viewport"
+window/handheld/orientation=1
 
 [global_group]
 
