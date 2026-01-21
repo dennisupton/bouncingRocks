@@ -13,7 +13,7 @@ var r = RandomNumberGenerator.new()
 func _ready() -> void:
 	highscore = load_highscore_js()
 	if highscore > 0:
-		$highscore/highscore.text = "Highscore : "+ str(highscore)
+		$CanvasLayer/highscore/highscore.text = "Highscore : "+ str(highscore)
 	username = load_name_js()
 	if username:
 		$CanvasLayer/Pause/Container/name.text = username
@@ -37,7 +37,7 @@ func _ready() -> void:
 var score = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	$CanvasLayer/bar/remember.visible = username == ""
+	$CanvasLayer/right/remember.visible = username == ""
 	if empty() and !$Player.freeze:
 		dir *= -1
 		ante *= 2
@@ -87,9 +87,9 @@ func addToScore():
 		save_highscore_js(score)
 		highscore = score
 		newHighscore = true
-		$highscore/highscore.text = "Highscore : "+ str(highscore)
+		$CanvasLayer/highscore/highscore.text = str(highscore)
 	elif highscore > 0:
-		$highscore/highscore.text = "Highscore : "+ str(highscore)
+		$CanvasLayer/highscore/highscore.text = str(highscore)
 
 func empty():
 	for i in get_children():
@@ -115,7 +115,8 @@ func save_highscore_js(s: int):
 			"localStorage.setItem('highscore', '%d');" % s
 		)
 	else:
-		$highscore.hide()
+		#$CanvasLayer/highscore.hide()
+		pass
 
 func load_highscore_js() -> int:
 	if OS.has_feature("web"):
@@ -126,7 +127,8 @@ func load_highscore_js() -> int:
 			return int(result)
 		print("load highscore result : "+str(result))
 	else:
-		$highscore.hide()
+		#$CanvasLayer/highscore.hide()
+		pass
 	save_highscore_js(0)
 	return 0
 

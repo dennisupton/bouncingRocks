@@ -14,10 +14,6 @@
 [ext_resource type="AudioStream" uid="uid://boorq842m1wdg" path="res://bounce.wav" id="12_dg77c"]
 [ext_resource type="AudioStream" uid="uid://bhao2v7lae738" path="res://lose.wav" id="13_ycdy4"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
-font_size = 66
-font_color = Color(1, 0.7529412, 0, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_0xm2m"]
 font_size = 111
 outline_size = 15
@@ -44,6 +40,10 @@ font_size = 26
 shadow_size = 51
 shadow_color = Color(0, 0, 0, 0.043137256)
 
+[sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
+font_size = 66
+font_color = Color(1, 0.7529412, 0, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycdy4"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
 draw_center = false
@@ -57,21 +57,6 @@ draw_center = false
 
 [node name="main" type="Node2D"]
 script = ExtResource("1_1bvp3")
-
-[node name="highscore" type="HBoxContainer" parent="."]
-offset_left = 66.0
-offset_top = -451.0
-offset_right = 278.0
-offset_bottom = -360.0
-
-[node name="TextureRect" type="TextureRect" parent="highscore"]
-layout_mode = 2
-texture = ExtResource("2_kek77")
-stretch_mode = 3
-
-[node name="highscore" type="Label" parent="highscore"]
-layout_mode = 2
-label_settings = SubResource("LabelSettings_h2yge")
 
 [node name="score" type="Label" parent="."]
 anchors_preset = 15
@@ -274,24 +259,47 @@ max_length = 10
 layout_mode = 2
 icon = ExtResource("6_5vw27")
 
-[node name="bar" type="HBoxContainer" parent="CanvasLayer"]
+[node name="saving" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 470.0
+offset_top = 28.0
+offset_right = 551.0
+offset_bottom = 64.0
+text = "Saving"
+label_settings = SubResource("LabelSettings_272bh")
+
+[node name="highscore" type="HBoxContainer" parent="CanvasLayer"]
+offset_left = 41.0
+offset_top = 36.0
+offset_right = 540.0
+offset_bottom = 127.0
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/highscore"]
+layout_mode = 2
+texture = ExtResource("2_kek77")
+stretch_mode = 3
+
+[node name="highscore" type="Label" parent="CanvasLayer/highscore"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_h2yge")
+
+[node name="right" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = -157.0
-offset_top = 64.0
-offset_right = -104.0
-offset_bottom = 98.0
+offset_left = 468.0
+offset_top = 46.0
+offset_right = -35.0
+offset_bottom = 137.0
 grow_horizontal = 2
-theme = ExtResource("3_lquwl")
 alignment = 2
 
-[node name="remember" type="Label" parent="CanvasLayer/bar"]
+[node name="remember" type="Label" parent="CanvasLayer/right"]
 z_index = -1
 layout_mode = 2
 text = "Remember to set username ->"
 label_settings = SubResource("LabelSettings_272bh")
 
-[node name="pause" type="Button" parent="CanvasLayer/bar"]
+[node name="pause" type="Button" parent="CanvasLayer/right"]
 z_index = 1
 layout_mode = 2
 focus_mode = 0
@@ -302,7 +310,7 @@ theme_override_styles/hover = SubResource("StyleBoxFlat_vivmo")
 icon = ExtResource("5_7mycd")
 icon_alignment = 1
 
-[node name="showLeaderboard" type="Button" parent="CanvasLayer/bar"]
+[node name="showLeaderboard" type="Button" parent="CanvasLayer/right"]
 layout_mode = 2
 focus_mode = 0
 theme = ExtResource("3_lquwl")
@@ -310,15 +318,6 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_ycdy4")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_ycdy4")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ycdy4")
 icon = ExtResource("6_272bh")
-
-[node name="saving" type="Label" parent="CanvasLayer"]
-visible = false
-offset_left = 470.0
-offset_top = 28.0
-offset_right = 551.0
-offset_bottom = 64.0
-text = "Saving"
-label_settings = SubResource("LabelSettings_272bh")
 
 [node name="SFX" type="Node2D" parent="."]
 
@@ -328,6 +327,7 @@ max_polyphony = 10
 
 [node name="hit" type="AudioStreamPlayer" parent="SFX"]
 stream = ExtResource("11_efxa6")
+volume_db = -18.279
 max_polyphony = 100
 
 [node name="bounce" type="AudioStreamPlayer" parent="SFX"]
@@ -340,5 +340,5 @@ stream = ExtResource("13_ycdy4")
 [connection signal="pressed" from="CanvasLayer/Pause/Container/Back" to="CanvasLayer/Pause" method="_on_back_pressed"]
 [connection signal="text_submitted" from="CanvasLayer/Pause/Container/username/name" to="." method="_on_name_text_submitted"]
 [connection signal="pressed" from="CanvasLayer/Pause/Container/username/enterName" to="." method="_on_enter_name_pressed"]
-[connection signal="pressed" from="CanvasLayer/bar/pause" to="." method="_on_pause_pressed"]
-[connection signal="pressed" from="CanvasLayer/bar/showLeaderboard" to="." method="_on_show_leaderboard_pressed"]
+[connection signal="pressed" from="CanvasLayer/right/pause" to="." method="_on_pause_pressed"]
+[connection signal="pressed" from="CanvasLayer/right/showLeaderboard" to="." method="_on_show_leaderboard_pressed"]
