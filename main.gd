@@ -65,8 +65,8 @@ func restart():
 		print("Uploading to Leaderboard")
 		$CanvasLayer/saving.show()
 		var scores = await SilentWolf.Scores.get_scores_by_player(username).sw_get_player_scores_complete
-		for i in scores:
-			SilentWolf.Scores.delete_score(i)
+		for i in scores.scores:
+			SilentWolf.Scores.delete_score(i.score_id)
 		await SilentWolf.Scores.save_score(username, lastScore)
 		$CanvasLayer/saving.hide()
 		newHighscore = false
@@ -175,17 +175,18 @@ func _on_enter_name_pressed() -> void:
 	username = $CanvasLayer/Pause/Container/username/name.text
 	save_name_js(username)
 	$CanvasLayer/saving.show()
-	var scores = await SilentWolf.Scores.get_scores_by_player(username).sw_get_player_scores_complete
-	print(scores)
-	if scores.scores.size() ==0:
+	print(username)
+	var scores = await SilentWolf.Scores.get_scores_by_player(username,99).sw_get_player_scores_complete
+	print(scores.scores)
+	if scores.scores.size() ==0 and highscore > 30:
 		await SilentWolf.Scores.save_score(username, highscore)
 	elif scores.scores[0] and scores.scores[0].score < highscore:
-		for i in scores:
-			await SilentWolf.Scores.delete_score(i)
+		print("adding highscore")
+		for i in scores.scores:
+			await SilentWolf.Scores.delete_score(i.score_id)
 		await SilentWolf.Scores.save_score(username, highscore)
+	else:
+		print("local highscore is lower")
+	Engine.time_scale = 1
 	$CanvasLayer/saving.hide()
 	$CanvasLayer/Pause.visible = false
-	if $CanvasLayer/Pause.visible:
-		Engine.time_scale = 0
-	else:
-		Engine.time_scale = 1
