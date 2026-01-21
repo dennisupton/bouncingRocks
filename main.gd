@@ -13,7 +13,7 @@ var r = RandomNumberGenerator.new()
 func _ready() -> void:
 	highscore = load_highscore_js()
 	if highscore > 0:
-		$highscore.text = "Highscore : "+ str(highscore)
+		$highscore/highscore.text = "Highscore : "+ str(highscore)
 	username = load_name_js()
 	if username:
 		$CanvasLayer/Pause/Container/name.text = username
@@ -52,6 +52,7 @@ func _process(_delta: float) -> void:
 		_on_pause_pressed()
 
 func restart():
+	$SFX/lose.play()
 	for i in get_children():
 		if i.is_in_group("ball"):
 			i.queue_free()
@@ -86,9 +87,9 @@ func addToScore():
 		save_highscore_js(score)
 		highscore = score
 		newHighscore = true
-		$highscore.text = "Highscore : "+ str(highscore)
+		$highscore/highscore.text = "Highscore : "+ str(highscore)
 	elif highscore > 0:
-		$highscore.text = "Highscore : "+ str(highscore)
+		$highscore/highscore.text = "Highscore : "+ str(highscore)
 
 func empty():
 	for i in get_children():

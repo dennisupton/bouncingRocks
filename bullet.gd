@@ -10,6 +10,7 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	position.y += -50
 	if colliding():
+		$"../SFX/hit".play()
 		colliding().health -= 1
 		queue_free()
 	elif position.y < 0:

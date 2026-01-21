@@ -63,16 +63,21 @@ func _physics_process(delta: float) -> void:
 				if get_slide_collision(i).get_collider().is_in_group("player"):
 					$"../Player".restart()
 			velocity.y = - lastV.y
+			$"../SFX/bounce".pitch_scale = RandomNumberGenerator.new().randf_range(1,1.4)
+			$"../SFX/bounce".play()
 		rotate(deg_to_rad(velocity.x/100)*Engine.time_scale)
 		if is_on_wall():
 			velocity.x = -lastV.x
 			for i in get_slide_collision_count():
 				if get_slide_collision(i).get_collider().is_in_group("player"):
 					$"../Player".restart()
+			$"../SFX/bounce".pitch_scale = RandomNumberGenerator.new().randf_range(1,1.4)
+			$"../SFX/bounce".play()
 		else:
 			lastV.x = velocity.x
 		move_and_slide()
 	elif kill:
+		$"../SFX/pop".play()
 		queue_free()
 	else:
 		health = startHealth

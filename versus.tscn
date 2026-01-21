@@ -1,22 +1,13 @@
-[gd_scene load_steps=25 format=3 uid="uid://cjt0xbpo7iac5"]
+[gd_scene load_steps=16 format=3 uid="uid://dsvogj7r1wfs"]
 
-[ext_resource type="Script" uid="uid://cyh211hlu0nlj" path="res://main.gd" id="1_1bvp3"]
-[ext_resource type="Texture2D" uid="uid://bva8fsuxf8o55" path="res://crown.svg" id="2_kek77"]
-[ext_resource type="Script" uid="uid://dnwq0ko6oqchr" path="res://leaderboard.gd" id="3_1bvp3"]
-[ext_resource type="Script" uid="uid://w61nm3ytyr5o" path="res://player.gd" id="3_h2yge"]
-[ext_resource type="Theme" uid="uid://b1vyvai5vn4ii" path="res://theme.tres" id="3_lquwl"]
-[ext_resource type="Texture2D" uid="uid://bsnkgt6vuuiqy" path="res://pause.svg" id="5_7mycd"]
-[ext_resource type="Script" uid="uid://c81w643hqdeht" path="res://pause.gd" id="5_272bh"]
-[ext_resource type="Texture2D" uid="uid://b3rtnvct1lub0" path="res://tick.svg" id="6_5vw27"]
-[ext_resource type="Texture2D" uid="uid://bxdiijfg1faoq" path="res://leaderboard.svg" id="6_272bh"]
-[ext_resource type="AudioStream" uid="uid://ci2ilt1g2q3ei" path="res://pop.wav" id="10_4c57u"]
-[ext_resource type="AudioStream" uid="uid://c7feesbf0a6cb" path="res://hit.wav" id="11_efxa6"]
-[ext_resource type="AudioStream" uid="uid://boorq842m1wdg" path="res://bounce.wav" id="12_dg77c"]
-[ext_resource type="AudioStream" uid="uid://bhao2v7lae738" path="res://lose.wav" id="13_ycdy4"]
-
-[sub_resource type="LabelSettings" id="LabelSettings_h2yge"]
-font_size = 66
-font_color = Color(1, 0.7529412, 0, 1)
+[ext_resource type="Script" uid="uid://s6hdr8iqau4x" path="res://versus.gd" id="1_h8s0a"]
+[ext_resource type="Script" uid="uid://w61nm3ytyr5o" path="res://player.gd" id="3_mjbbg"]
+[ext_resource type="Theme" uid="uid://b1vyvai5vn4ii" path="res://theme.tres" id="4_4f04c"]
+[ext_resource type="Script" uid="uid://dnwq0ko6oqchr" path="res://leaderboard.gd" id="5_6npsp"]
+[ext_resource type="Script" uid="uid://c81w643hqdeht" path="res://pause.gd" id="6_ttbx4"]
+[ext_resource type="Texture2D" uid="uid://b3rtnvct1lub0" path="res://tick.svg" id="7_7u6rt"]
+[ext_resource type="Texture2D" uid="uid://bsnkgt6vuuiqy" path="res://pause.svg" id="8_mgbps"]
+[ext_resource type="Texture2D" uid="uid://bxdiijfg1faoq" path="res://leaderboard.svg" id="9_ypa6n"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_0xm2m"]
 font_size = 111
@@ -44,34 +35,8 @@ font_size = 26
 shadow_size = 51
 shadow_color = Color(0, 0, 0, 0.043137256)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ycdy4"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-draw_center = false
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w48qg"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vivmo"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-draw_center = false
-
-[node name="main" type="Node2D"]
-script = ExtResource("1_1bvp3")
-
-[node name="highscore" type="HBoxContainer" parent="."]
-offset_left = 45.0
-offset_top = 42.0
-offset_right = 257.0
-offset_bottom = 133.0
-
-[node name="TextureRect" type="TextureRect" parent="highscore"]
-layout_mode = 2
-texture = ExtResource("2_kek77")
-stretch_mode = 3
-
-[node name="highscore" type="Label" parent="highscore"]
-layout_mode = 2
-label_settings = SubResource("LabelSettings_h2yge")
+[node name="Versus" type="Node2D"]
+script = ExtResource("1_h8s0a")
 
 [node name="score" type="Label" parent="."]
 anchors_preset = 15
@@ -92,7 +57,7 @@ vertical_alignment = 1
 position = Vector2(972, 551)
 collision_layer = 3
 collision_mask = 3
-script = ExtResource("3_h2yge")
+script = ExtResource("3_mjbbg")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_lquwl")
@@ -124,10 +89,11 @@ offset_top = 648.00006
 offset_right = 68.0
 offset_bottom = 1799.6963
 rotation = -1.5707964
-color = Color(0.22352941, 0.25490198, 0.6313726, 1)
+color = Color(0.18000486, 0.18000486, 0.18000486, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Floor2" type="StaticBody2D" parent="Box"]
-position = Vector2(-3, -648)
+position = Vector2(-10, -1128)
 physics_material_override = SubResource("PhysicsMaterial_ig7tw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Box/Floor2"]
@@ -140,34 +106,39 @@ offset_top = 648.00006
 offset_right = 68.0
 offset_bottom = 1813.1423
 rotation = -1.5707964
-color = Color(0.22352941, 0.25490198, 0.6313726, 1)
+color = Color(0.18039216, 0.18039216, 0.18039216, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Wall" type="StaticBody2D" parent="Box"]
+position = Vector2(5, -551)
+scale = Vector2(1, 1.845)
 physics_material_override = SubResource("PhysicsMaterial_ig7tw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Box/Wall"]
-position = Vector2(29, 288)
+position = Vector2(29, 322.5)
 shape = SubResource("RectangleShape2D_h2yge")
 
 [node name="ColorRect" type="ColorRect" parent="Box/Wall"]
 offset_left = -9.0
 offset_right = 68.0
 offset_bottom = 644.0
-color = Color(0.22352941, 0.25490198, 0.6313726, 1)
+color = Color(0.18039216, 0.18039216, 0.18039216, 1)
+metadata/_edit_use_anchors_ = true
 
 [node name="Wall2" type="StaticBody2D" parent="Box"]
-position = Vector2(1082, -2)
+position = Vector2(1047, -528)
+scale = Vector2(1, 1.815)
 physics_material_override = SubResource("PhysicsMaterial_ig7tw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Box/Wall2"]
-position = Vector2(29, 287)
+position = Vector2(29, 320)
 shape = SubResource("RectangleShape2D_h2yge")
 
 [node name="ColorRect" type="ColorRect" parent="Box/Wall2"]
 offset_left = -9.0
 offset_right = 68.0
 offset_bottom = 644.0
-color = Color(0.2229402, 0.25676447, 0.63155806, 1)
+color = Color(0.18039216, 0.18039216, 0.18039216, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -183,8 +154,8 @@ offset_right = -232.0
 offset_bottom = -87.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("3_lquwl")
-script = ExtResource("3_1bvp3")
+theme = ExtResource("4_4f04c")
+script = ExtResource("5_6npsp")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Leaderboard"]
 layout_mode = 1
@@ -237,8 +208,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme = ExtResource("3_lquwl")
-script = ExtResource("5_272bh")
+theme = ExtResource("4_4f04c")
+script = ExtResource("6_ttbx4")
 
 [node name="Container" type="VBoxContainer" parent="CanvasLayer/Pause"]
 layout_mode = 1
@@ -255,24 +226,24 @@ alignment = 1
 
 [node name="Back" type="Button" parent="CanvasLayer/Pause/Container"]
 layout_mode = 2
-theme = ExtResource("3_lquwl")
+theme = ExtResource("4_4f04c")
 text = "Back"
 
 [node name="username" type="HBoxContainer" parent="CanvasLayer/Pause/Container"]
 layout_mode = 2
-theme = ExtResource("3_lquwl")
+theme = ExtResource("4_4f04c")
 alignment = 1
 
 [node name="name" type="LineEdit" parent="CanvasLayer/Pause/Container/username"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme = ExtResource("3_lquwl")
+theme = ExtResource("4_4f04c")
 placeholder_text = "Enter Name"
 max_length = 10
 
 [node name="enterName" type="Button" parent="CanvasLayer/Pause/Container/username"]
 layout_mode = 2
-icon = ExtResource("6_5vw27")
+icon = ExtResource("7_7u6rt")
 
 [node name="bar" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 10
@@ -282,7 +253,7 @@ offset_top = 64.0
 offset_right = -104.0
 offset_bottom = 98.0
 grow_horizontal = 2
-theme = ExtResource("3_lquwl")
+theme = ExtResource("4_4f04c")
 alignment = 2
 
 [node name="remember" type="Label" parent="CanvasLayer/bar"]
@@ -295,21 +266,15 @@ label_settings = SubResource("LabelSettings_272bh")
 z_index = 1
 layout_mode = 2
 focus_mode = 0
-theme = ExtResource("3_lquwl")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ycdy4")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_w48qg")
-theme_override_styles/hover = SubResource("StyleBoxFlat_vivmo")
-icon = ExtResource("5_7mycd")
+theme = ExtResource("4_4f04c")
+icon = ExtResource("8_mgbps")
 icon_alignment = 1
 
 [node name="showLeaderboard" type="Button" parent="CanvasLayer/bar"]
 layout_mode = 2
 focus_mode = 0
-theme = ExtResource("3_lquwl")
-theme_override_styles/normal = SubResource("StyleBoxFlat_ycdy4")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ycdy4")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ycdy4")
-icon = ExtResource("6_272bh")
+theme = ExtResource("4_4f04c")
+icon = ExtResource("9_ypa6n")
 
 [node name="saving" type="Label" parent="CanvasLayer"]
 visible = false
@@ -319,23 +284,6 @@ offset_right = 551.0
 offset_bottom = 64.0
 text = "Saving"
 label_settings = SubResource("LabelSettings_272bh")
-
-[node name="SFX" type="Node2D" parent="."]
-
-[node name="pop" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("10_4c57u")
-max_polyphony = 10
-
-[node name="hit" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("11_efxa6")
-max_polyphony = 100
-
-[node name="bounce" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("12_dg77c")
-max_polyphony = 10
-
-[node name="lose" type="AudioStreamPlayer" parent="SFX"]
-stream = ExtResource("13_ycdy4")
 
 [connection signal="pressed" from="CanvasLayer/Pause/Container/Back" to="CanvasLayer/Pause" method="_on_back_pressed"]
 [connection signal="text_submitted" from="CanvasLayer/Pause/Container/username/name" to="." method="_on_name_text_submitted"]
