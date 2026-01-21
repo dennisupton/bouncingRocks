@@ -176,7 +176,10 @@ func _on_enter_name_pressed() -> void:
 	save_name_js(username)
 	$CanvasLayer/saving.show()
 	var scores = await SilentWolf.Scores.get_scores_by_player(username).sw_get_player_scores_complete
-	if scores[0].score < highscore:
+	print(scores)
+	if scores.scores.size() ==0:
+		await SilentWolf.Scores.save_score(username, highscore)
+	elif scores.scores[0] and scores.scores[0].score < highscore:
 		for i in scores:
 			SilentWolf.Scores.delete_score(i)
 		await SilentWolf.Scores.save_score(username, highscore)
