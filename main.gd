@@ -42,8 +42,9 @@ func _process(_delta: float) -> void:
 		dir *= -1
 		ante *= 2
 		newBall()
-	if (Input.is_action_just_pressed("leaderboard") or Input.is_action_just_pressed("shoot")) and $CanvasLayer/Leaderboard.visible:
+	if Input.is_action_just_pressed("leaderboard") and $CanvasLayer/Leaderboard.visible:
 		$CanvasLayer/Leaderboard.hide()
+		$CanvasLayer/back.hide()
 		Engine.time_scale = 1
 	elif Input.is_action_just_pressed("leaderboard"):
 		_on_show_leaderboard_pressed()
@@ -135,12 +136,14 @@ func load_highscore_js() -> int:
 
 func _on_show_leaderboard_pressed():
 	if not $CanvasLayer/Pause.visible:
+		$CanvasLayer/back.show()
 		$CanvasLayer/Leaderboard.loadLeaderboard()
 		Engine.time_scale = 0
 		$CanvasLayer/Leaderboard.show()
 
 func _on_pause_pressed() -> void:
 	if not $CanvasLayer/Leaderboard.visible:
+		$CanvasLayer/back.show()
 		$CanvasLayer/Pause/Container/username/name.text = username
 		$CanvasLayer/Pause.visible = not $CanvasLayer/Pause.visible
 		if $CanvasLayer/Pause.visible:
@@ -173,24 +176,29 @@ func getBallScale(x):
 	return (29*x - (26**(2/1.9) * x)**(1.9/2)) / (10*x - (5**(2/1.9) * x)**(1.9/2))
 
 
-
+var saved = false
 func _on_enter_name_pressed() -> void:
 	print("new username")
+	$CanvasLayer/Pause.visible = false
+	$CanvasLayer/back.hide()
+	if username != $CanvasLayer/Pause/Container/username/name.text:
+		saved = false
 	username = $CanvasLayer/Pause/Container/username/name.text
 	save_name_js(username)
 	$CanvasLayer/saving.show()
 	print(username)
 	var scores = await SilentWolf.Scores.get_scores_by_player(username,99).sw_get_player_scores_complete
 	print(scores.scores)
-	if scores.scores.size() ==0 and highscore > 30:
+	if scores.scores.size() ==0 and highscore > 30 and !saved:
 		await SilentWolf.Scores.save_score(username, highscore)
-	elif highscore > 30 and scores.scores[0] and scores.scores[0].score < highscore:
+		saved = true
+	elif highscore > 30 and scores.scores[0] and scores.scores[0].score < highscore and !saved:
 		print("adding highscore")
 		for i in scores.scores:
 			await SilentWolf.Scores.delete_score(i.score_id)
 		await SilentWolf.Scores.save_score(username, highscore)
+		saved = true
 	else:
 		print("local highscore is lower")
 	Engine.time_scale = 1
 	$CanvasLayer/saving.hide()
-	$CanvasLayer/Pause.visible = false
