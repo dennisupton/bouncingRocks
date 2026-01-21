@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://cjt0xbpo7iac5"]
+[gd_scene load_steps=29 format=3 uid="uid://cjt0xbpo7iac5"]
 
 [ext_resource type="Script" uid="uid://cyh211hlu0nlj" path="res://main.gd" id="1_1bvp3"]
 [ext_resource type="Texture2D" uid="uid://bva8fsuxf8o55" path="res://crown.svg" id="2_kek77"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" uid="uid://c81w643hqdeht" path="res://pause.gd" id="5_272bh"]
 [ext_resource type="Texture2D" uid="uid://b3rtnvct1lub0" path="res://tick.svg" id="6_5vw27"]
 [ext_resource type="Texture2D" uid="uid://bxdiijfg1faoq" path="res://leaderboard.svg" id="6_272bh"]
+[ext_resource type="Texture2D" uid="uid://bd3q1bc3obg1d" path="res://soundOn.svg" id="8_yaehf"]
+[ext_resource type="Texture2D" uid="uid://bv65nj5ti17pw" path="res://mute.svg" id="9_074og"]
 [ext_resource type="AudioStream" uid="uid://ci2ilt1g2q3ei" path="res://pop.wav" id="10_4c57u"]
 [ext_resource type="AudioStream" uid="uid://c7feesbf0a6cb" path="res://hit.wav" id="11_efxa6"]
 [ext_resource type="AudioStream" uid="uid://boorq842m1wdg" path="res://bounce.wav" id="12_dg77c"]
@@ -217,7 +219,6 @@ label_settings = SubResource("LabelSettings_x1gaq")
 horizontal_alignment = 2
 
 [node name="Pause" type="Panel" parent="CanvasLayer"]
-visible = false
 z_index = 2
 anchors_preset = -1
 anchor_left = 0.5
@@ -248,10 +249,22 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Pause/Container"]
+layout_mode = 2
+toggle_mode = true
+texture_normal = ExtResource("8_yaehf")
+texture_pressed = ExtResource("9_074og")
+stretch_mode = 3
+
 [node name="Back" type="Button" parent="CanvasLayer/Pause/Container"]
 layout_mode = 2
 theme = ExtResource("3_lquwl")
 text = "Back"
+
+[node name="Restart" type="Button" parent="CanvasLayer/Pause/Container"]
+layout_mode = 2
+theme = ExtResource("3_lquwl")
+text = "Restart"
 
 [node name="username" type="HBoxContainer" parent="CanvasLayer/Pause/Container"]
 layout_mode = 2
@@ -349,6 +362,7 @@ max_polyphony = 10
 stream = ExtResource("13_ycdy4")
 
 [connection signal="pressed" from="CanvasLayer/Pause/Container/Back" to="CanvasLayer/Pause" method="_on_back_pressed"]
+[connection signal="pressed" from="CanvasLayer/Pause/Container/Restart" to="." method="restart"]
 [connection signal="text_submitted" from="CanvasLayer/Pause/Container/username/name" to="." method="_on_name_text_submitted"]
 [connection signal="pressed" from="CanvasLayer/Pause/Container/username/enterName" to="." method="_on_enter_name_pressed"]
 [connection signal="pressed" from="CanvasLayer/right/pause" to="." method="_on_pause_pressed"]

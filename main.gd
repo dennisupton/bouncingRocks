@@ -51,7 +51,11 @@ func _process(_delta: float) -> void:
 	
 	if Input.is_action_just_pressed("Pause"):
 		_on_pause_pressed()
-
+	
+	if $CanvasLayer/Pause/Container/TextureButton.button_pressed:
+		AudioServer.set_bus_mute(0, true)
+	else:
+		AudioServer.set_bus_mute(0, false)
 func restart():
 	$SFX/lose.play()
 	for i in get_children():
