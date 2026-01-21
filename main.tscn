@@ -169,6 +169,7 @@ grow_vertical = 2
 script = ExtResource("3_w48qg")
 
 [node name="Leaderboard" type="Panel" parent="CanvasLayer"]
+visible = false
 z_index = 2
 anchors_preset = -1
 anchor_left = 0.536
