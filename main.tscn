@@ -105,10 +105,10 @@ position = Vector2(571.5, 614.5)
 shape = SubResource("RectangleShape2D_0xm2m")
 
 [node name="ColorRect" type="ColorRect" parent="Box/Floor"]
-offset_left = -8.999999
-offset_top = 648.00006
-offset_right = 68.0
-offset_bottom = 1799.6963
+offset_left = -1.8056481
+offset_top = 641.3885
+offset_right = 68.58278
+offset_bottom = 1793.105
 rotation = -1.5707964
 color = Color(0.22352941, 0.25490198, 0.6313726, 1)
 
@@ -121,10 +121,10 @@ position = Vector2(571, 614.5)
 shape = SubResource("RectangleShape2D_0xm2m")
 
 [node name="ColorRect" type="ColorRect" parent="Box/Floor2"]
-offset_left = -8.999999
+offset_left = 3.0210428
 offset_top = 648.00006
-offset_right = 68.0
-offset_bottom = 1813.1423
+offset_right = 80.02104
+offset_bottom = 1798.249
 rotation = -1.5707964
 color = Color(0.22352941, 0.25490198, 0.6313726, 1)
 
@@ -136,9 +136,10 @@ position = Vector2(29, 288)
 shape = SubResource("RectangleShape2D_h2yge")
 
 [node name="ColorRect" type="ColorRect" parent="Box/Wall"]
-offset_left = -9.0
-offset_right = 68.0
-offset_bottom = 644.0
+offset_left = -1.0
+offset_top = -77.0
+offset_right = 76.0
+offset_bottom = 641.0
 color = Color(0.22352941, 0.25490198, 0.6313726, 1)
 
 [node name="Wall2" type="StaticBody2D" parent="Box"]
@@ -152,7 +153,7 @@ shape = SubResource("RectangleShape2D_h2yge")
 [node name="ColorRect" type="ColorRect" parent="Box/Wall2"]
 offset_left = -9.0
 offset_right = 68.0
-offset_bottom = 644.0
+offset_bottom = 630.0
 color = Color(0.2229402, 0.25676447, 0.63155806, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

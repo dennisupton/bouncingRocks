@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://ck3gdy54volgb"]
+[gd_scene load_steps=5 format=3 uid="uid://ck3gdy54volgb"]
 
 [ext_resource type="Script" uid="uid://b2g1bvdpxjsmd" path="res://bullet.gd" id="1_v7oki"]
+[ext_resource type="Texture2D" uid="uid://c6idm7w7ovior" path="res://bullet.svg" id="2_v8qja"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v7oki"]
 size = Vector2(17, 52)
@@ -25,9 +26,7 @@ collision_mask = 7
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_v7oki")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -8.0
-offset_top = -26.0
-offset_right = 9.0
-offset_bottom = 40.0
-color = Color(1, 0, 0, 1)
+[node name="bullet" type="Sprite2D" parent="."]
+position = Vector2(62.000004, 89.99999)
+scale = Vector2(0.258125, 0.35125)
+texture = ExtResource("2_v8qja")

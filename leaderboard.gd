@@ -22,7 +22,10 @@ func loadLeaderboard():
 	var idx = 1
 	for i in sw_result.scores:
 		var child = await leaderboardItem.instantiate()
-		child.get_child(0).get_child(0).text = str(idx)
+		if len(str(idx)) == 1:
+			child.get_child(0).get_child(0).text = "0"+str(idx)
+		else:
+			child.get_child(0).get_child(0).text = str(idx)
 		child.get_child(0).get_child(1).text = str(i.player_name) 
 		child.get_child(1).text = str(int(i.score))
 		$VBoxContainer/VBoxContainer.add_child(child)

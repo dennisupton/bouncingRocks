@@ -179,6 +179,7 @@ func getBallScale(x):
 var saved = false
 func _on_enter_name_pressed() -> void:
 	print("new username")
+	Engine.time_scale = 1
 	$CanvasLayer/Pause.visible = false
 	$CanvasLayer/back.hide()
 	if username != $CanvasLayer/Pause/Container/username/name.text:
