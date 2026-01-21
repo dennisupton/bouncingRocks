@@ -32,6 +32,7 @@ func _ready() -> void:
 	"open_scene_on_close": "res://main.tscn"
 	})
 	$CanvasLayer/Leaderboard.loadLeaderboard()
+
 	#SilentWolf.Scores.wipe_leaderboard()
 var score = 0
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -50,13 +51,6 @@ func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("Pause"):
 		_on_pause_pressed()
 func restart():
-	$Player.freeze = true
-	$CanvasLayer/transition/anim.play("Death")
-	for i in get_children():
-		if i.is_in_group("ball"):
-			i.queue_free()
-	await get_tree().create_timer(0.5).timeout
-	$CanvasLayer/transition/anim.play("RESET")
 	ante = 1
 	var lastScore = score
 	score = 0
@@ -70,7 +64,7 @@ func restart():
 		await SilentWolf.Scores.save_score(username, lastScore)
 		$CanvasLayer/saving.hide()
 		newHighscore = false
-	$Player.freeze = false
+
 
 func addExplode(pos,color):
 	var child = explodeFX.instantiate()
